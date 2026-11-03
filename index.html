@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Letter For You 💌</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffe4e1; 
+    font-family: 'Quicksand', sans-serif;
+    overflow: hidden;
+  }
+
+  .envelope-wrapper {
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.5s ease;
+  }
+  
+  .envelope-wrapper:hover {
+    transform: scale(1.02);
+  }
+
+  .envelope {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    background: #ffb6c1;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    z-index: 1;
+  }
+
+  .envelope::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-left: 150px solid #ff9eaf;
+    border-right: 150px solid #ff9eaf;
+    border-top: 100px solid transparent;
+    border-bottom: 100px solid #ff9eaf;
+    border-radius: 0 0 10px 10px;
+    z-index: 3;
+  }
+
+  .flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-top: 100px solid #ff8fab;
+    border-radius: 10px 10px 0 0;
+    transform-origin: top;
+    transition: transform 0.8s ease-in-out, z-index 0.8s;
+    z-index: 4;
+  }
+
+  .letter {
+    position: absolute;
+    top: 20px;
+    left: 15px;
+    width: 270px;
+    height: 160px;
+    background: white;
+    border-radius: 5px;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    transition: transform 0.8s ease-in-out, z-index 0.8s;
+    z-index: 2; 
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .envelope-wrapper.open .flap {
+    transform: rotateX(180deg);
+    z-index: 1; 
+  }
+
+  .envelope-wrapper.open .letter {
+    transform: translateY(-150px); 
+    z-index: 5; 
+  }
+
+  .letter img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin-bottom: 10px;
+  }
+
+  .letter h1 {
+    font-size: 16px;
+    color: #d81b60;
+    margin: 0 0 5px 0;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+  }
+
+  .letter p {
+    font-size: 12px;
+    color: #795548;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .instruction {
+    position: absolute;
+    bottom: -40px;
+    width: 100%;
+    text-align: center;
+    color: #d81b60;
+    font-weight: bold;
+    font-size: 14px;
+    animation: float 2s infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+
+</style>
+</head>
+<body>
+
+  <div class="envelope-wrapper" id="amplop" onclick="bukaAmplop()">
+    
+    <div class="envelope">
+      <div class="letter">
+        <img src="kusying.jpg" alt="Kucing Gemes">
+        <h1>Hai Kamu! 💖</h1>
+        <p>Ini surat kecil buat temenin hari-hari kamu. Semangat terus ya, jangan lupa senyum hari ini!</p>
+      </div>
+      
+      <div class="flap"></div>
+    </div>
+
+    <div class="instruction">Klik amplopnya! 👆</div>
+  </div>
+
+<script>
+  function bukaAmplop() {
+    const amplop = document.getElementById('amplop');
+    const instruksi = document.querySelector('.instruction');
+    
+    amplop.classList.toggle('open');
+    
+    if (amplop.classList.contains('open')) {
+      instruksi.style.opacity = '0';
+    } else {
+      instruksi.style.opacity = '1';
+    }
+  }
+</script>
+</body>
+</html>
